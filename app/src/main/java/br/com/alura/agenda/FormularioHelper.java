@@ -1,5 +1,6 @@
 package br.com.alura.agenda;
 
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import br.com.alura.agenda.modelo.Aluno;
@@ -26,13 +27,12 @@ public class FormularioHelper {
     }
 
     public Aluno pegaAluno () {
-            Aluno aluno = new Aluno();
-            aluno.setNome(campoNome.getText().toString());
-            aluno.setEndereco(campoEndereco.getText().toString());
-            aluno.setTelefone(campoTelefone.getText().toString());
-            aluno.setSite(campoSite.getText().toString());
-            aluno.setNota(Double.valueOf(campoNota.getProgress()));
-        return aluno;
+        aluno.setNome(campoNome.getText().toString());
+        aluno.setEndereco(campoEndereco.getText().toString());
+        aluno.setTelefone(campoTelefone.getText().toString());
+        aluno.setSite(campoSite.getText().toString());
+        aluno.setNota(Double.valueOf(campoNota.getProgress()));
+      return aluno;
     }
 
     public void preencheFormulario(Aluno aluno) {
