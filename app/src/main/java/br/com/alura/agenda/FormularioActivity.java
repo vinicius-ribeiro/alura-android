@@ -39,11 +39,11 @@ public class FormularioActivity extends AppCompatActivity {
         botaoCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent abreCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                String caminhoDaFoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg";
-                File arquivoFoto = new File(caminhoDaFoto);
-                abreCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(arquivoFoto));
-                startActivityForResult(abreCamera, CODIGO_CAMERA);
+                Intent abreCamera    = new Intent(MediaStore.ACTION_IMAGE_CAPTURE); // invoca a acao de tirar a foto
+                caminhoDaFoto        = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg"; // caminho. para subpastaas alterar null
+                File arquivoFoto     = new File(caminhoDaFoto); //cria um file com o caminho da foto
+                abreCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(arquivoFoto)); // cria a intent passando o arquivo criado
+                startActivityForResult(abreCamera, CODIGO_CAMERA); //abre a camera
             }
         });
 
@@ -84,12 +84,10 @@ public class FormularioActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
         if(requestCode == CODIGO_CAMERA) {
             if (resultCode == RESULT_OK) {
-                Bitmap bm = BitmapFactory.decodeFile(caminhoDaFoto);
-                bm = Bitmap.createScaledBitmap(bm, 100, 100, true);
+                Bitmap bm      = BitmapFactory.decodeFile(caminhoDaFoto);
+                bm             = Bitmap.createScaledBitmap(bm, 100, 100, true);
                 ImageView foto = (ImageView) findViewById(R.id.foto_aluno_form);
                 foto.setImageBitmap(bm);
                 foto.setScaleType(ImageView.ScaleType.FIT_XY);
