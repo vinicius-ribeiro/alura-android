@@ -15,7 +15,7 @@ import br.com.alura.agenda.modelo.Aluno;
  * Created by Vinicius on 07/08/2017.
  */
 
-public class EnviaAlunosTask extends AsyncTask<Object, Object, String> {
+public class EnviaAlunosTask extends AsyncTask<Void, Void, String> {
 
     private Context context;
     private ProgressDialog dialog;
@@ -30,7 +30,7 @@ public class EnviaAlunosTask extends AsyncTask<Object, Object, String> {
     }
 
     @Override
-    protected String doInBackground(Object... objects) {
+    protected String doInBackground(Void... objects) {
         AlunoDAO dao       = new AlunoDAO(context);
         List<Aluno> alunos = dao.buscaAlunos();
         dao.close();
