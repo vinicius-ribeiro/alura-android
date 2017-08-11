@@ -2,8 +2,11 @@ package br.com.alura.agenda;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -14,12 +17,16 @@ import java.util.List;
 
 import br.com.alura.agenda.modelo.Prova;
 
-public class ProvasActivity extends AppCompatActivity {
+/**
+ * Created by Vinicius on 11/08/2017.
+ */
 
+public class ListaProvasFragment extends Fragment {
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_lista_provas);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_lista_provas, container, false);
 
         List<String> topicosPort = Arrays.asList("Sujeito", "OBjeto Direto", "Pronomes", "Substantivos");
         Prova provaPortugues = new Prova("Portugues", "09/08/2017", topicosPort);
@@ -31,7 +38,7 @@ public class ProvasActivity extends AppCompatActivity {
 
         ArrayAdapter<Prova> adapter = new ArrayAdapter<Prova>(this, android.R.layout.simple_list_item_1, provas);
 
-        ListView listaProvas = (ListView) findViewById(R.id.provas_lista);
+        ListView listaProvas = (ListView) view.findViewById(R.id.provas_lista);
         listaProvas.setAdapter(adapter);
 
         listaProvas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -47,6 +54,6 @@ public class ProvasActivity extends AppCompatActivity {
             }
         });
 
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
-
 }
